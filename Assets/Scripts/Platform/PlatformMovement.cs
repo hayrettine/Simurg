@@ -40,4 +40,10 @@ public class PlatformMovement : MonoBehaviour
         target = new Vector3(xPos, transform.position.y, zPos);
         nav.SetDestination(target);
     }
+    public void ResetPlatform()
+    {
+        this.transform.position =  new Vector3(0,0.5f,0);
+        SetTarget();
+        Debug.Log("Platform reset!!");
+    }
 }

@@ -15,11 +15,15 @@ public class AgentScript : Agent
     public int resWidth = 800;
     public int resHeight = 600;
     int max;
-    float[] last_action;
+    float[] last_action;    
+    public GameObject platform;
+ 
     void Start()
     {
         last_action = new float[2];
+        
     }
+    
 
     public override void AgentReset()
     {
@@ -27,20 +31,25 @@ public class AgentScript : Agent
         rBody.velocity = Vector3.zero;
         //tf.position = new Vector3(Random.RandomRange(-15, 15), 20f, Random.RandomRange(-15, 15));
         tf.position = new Vector3(0, 20f, 0);
-        
+
         //TODO platformun resetleneceği kısım. targetTransform platformun tranformu. [Sinan]
         //TODO platformu (0,0.5,0) noktasında oluşturmamız yeterli şuan. Sonra random'a çekeriz.
         //targetTransform.position = new Vector3(Random.Range(-5, 5), 0.5f, Random.Range(-5, 5));
         //targetTransform.position = new Vector3(0, 0.5f, 0);
-        
-        
+
+        platform.GetComponent<PlatformMovement>().ResetPlatform();
+
+
+
     }
 
-    public override void CollectObservations()
-    {
-        AddVectorObs(punishmentForCenter());
-        AddVectorObs(new Vector2(rBody.velocity.x / 20, rBody.velocity.z / 20));
-    }
+    // ColllectObservations bende hata veriyor. Ml-Agents sürümüyle alakalı muhtemelen
+    // burayı yorumdan kaldırıp çalıştırmak gerekiyor
+    //public override void CollectObservations()
+    //{
+      //  AddVectorObs(punishmentForCenter());
+     //   AddVectorObs(new Vector2(rBody.velocity.x / 20, rBody.velocity.z / 20));
+   // }
 
     public override void AgentAction(float[] vectorAction)
     {
@@ -106,6 +115,6 @@ public class AgentScript : Agent
     }
 
 
-
+    
 
 }
