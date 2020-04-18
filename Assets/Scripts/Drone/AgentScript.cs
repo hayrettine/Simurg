@@ -18,6 +18,7 @@ public class AgentScript : Agent
     int max;
     float[] last_action;    
     public GameObject platform;
+    public Transform plane;
  
     void Start()
     {
@@ -31,7 +32,7 @@ public class AgentScript : Agent
         rBody.angularVelocity = Vector3.zero;
         rBody.velocity = Vector3.zero;
         //tf.position = new Vector3(Random.RandomRange(-15, 15), 20f, Random.RandomRange(-15, 15));
-        tf.position = new Vector3(0, 20f, 0);
+        tf.position = new Vector3(plane.position.x, plane.position.y + 20f, plane.position.z);
 
         //TODO platformun resetleneceği kısım. targetTransform platformun tranformu. [Sinan]
         //TODO platformu (0,0.5,0) noktasında oluşturmamız yeterli şuan. Sonra random'a çekeriz.

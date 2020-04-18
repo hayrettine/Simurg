@@ -42,8 +42,9 @@ public class PlatformMovement : MonoBehaviour
     }
     public void ResetPlatform()
     {
-        this.transform.position =  new Vector3(0,0.5f,0);
+        this.transform.localPosition =  new Vector3((float)((leftCorner.localPosition.x + rightCorner.localPosition.x) / 2) ,leftCorner.localPosition.y + 0.5f, (float)((upCorner.localPosition.z + rightCorner.localPosition.z) / 2));
         SetTarget();
         Debug.Log("Platform reset!!");
+        
     }
 }
