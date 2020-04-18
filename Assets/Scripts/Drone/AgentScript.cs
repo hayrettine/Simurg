@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MLAgents;
 using System.IO;
+using MLAgents.Sensors;
 //using MLAgents.Sensor;
 public class AgentScript : Agent
 {
@@ -43,13 +44,12 @@ public class AgentScript : Agent
 
     }
 
-    // ColllectObservations bende hata veriyor. Ml-Agents sürümüyle alakalı muhtemelen
-    // burayı yorumdan kaldırıp çalıştırmak gerekiyor
-    //public override void CollectObservations()
-    //{
-      //  AddVectorObs(punishmentForCenter());
-     //   AddVectorObs(new Vector2(rBody.velocity.x / 20, rBody.velocity.z / 20));
-   // }
+ 
+    public override void CollectObservations(VectorSensor sensor)
+    {
+      sensor.AddObservation(punishmentForCenter());
+      sensor.AddObservation(new Vector2(rBody.velocity.x / 20, rBody.velocity.z / 20));
+    }
 
     public override void AgentAction(float[] vectorAction)
     {
