@@ -89,7 +89,7 @@ public class AgentScript : Agent
         int min_index = resHeight * resWidth;
         for (int i = 0; i < asd.Length; i++)
         {
-            if (asd[i].r != 255)
+            if (asd[i].r < 50)
             {
                 if (i > max_index)
                 {
