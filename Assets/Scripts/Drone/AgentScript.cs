@@ -41,7 +41,7 @@ public class AgentScript : Agent
 
         platform.GetComponent<PlatformMovement>().ResetPlatform();
 
-
+       
 
     }
 
@@ -59,7 +59,11 @@ public class AgentScript : Agent
 
         if (max == 0)//|| tf.position.y < 0.3)
         {
-            Debug.Log("Done");
+
+           // Debug.Log("max çalıştı");
+            //Debug.Log(punishmentForCenter());
+
+            //punishmentForCenter();
             AddReward(-5);
             Done();
         }
@@ -70,7 +74,7 @@ public class AgentScript : Agent
         var action = new float[2];
         //action[0] = Input.GetAxis("Horizontal");
         //action[0] = Input.GetAxis("Vertical");
-        Debug.Log("heur");
+        
         return action;
     }
 
@@ -89,7 +93,7 @@ public class AgentScript : Agent
         int min_index = resHeight * resWidth;
         for (int i = 0; i < asd.Length; i++)
         {
-            if (asd[i].r < 50)
+            if (asd[i].r != 255)
             {
                 if (i > max_index)
                 {
@@ -102,6 +106,7 @@ public class AgentScript : Agent
             }
         }
         max = max_index;
+       // Debug.Log(max);
         Destroy(rt);
         Destroy(screenShot);
 

@@ -312,12 +312,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!4 &415637941 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2430970756100831954, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
-    type: 3}
-  m_PrefabInstance: {fileID: 7878409002870624670}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &500378408 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2430970756100831954, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
@@ -752,6 +746,11 @@ PrefabInstance:
       propertyPath: plane
       value: 
       objectReference: {fileID: 1845728540}
+    - target: {fileID: 7878409002921720276, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
+        type: 3}
+      propertyPath: maxStep
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7878409002921720277, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
         type: 3}
       propertyPath: m_BrainParameters.vectorObservationSize
@@ -761,6 +760,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BrainParameters.numStackedVectorObservations
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878409002921720277, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878409002921720277, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
+        type: 3}
+      propertyPath: m_BehaviorType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7878409003142446511, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
         type: 3}
@@ -1152,51 +1161,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrainingArea
-      objectReference: {fileID: 0}
-    - target: {fileID: 7878409002921720276, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
-        type: 3}
-      propertyPath: plane
-      value: 
-      objectReference: {fileID: 415637941}
-    - target: {fileID: 7878409002921720277, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
-        type: 3}
-      propertyPath: m_BrainParameters.vectorObservationSize
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7878409002921720277, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
-        type: 3}
-      propertyPath: m_BrainParameters.numStackedVectorObservations
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7878409003142446511, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
-        type: 3}
-      propertyPath: m_Speed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7878409003769767164, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
-        type: 3}
-      propertyPath: m_TargetDisplay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7878409003769767164, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
-        type: 3}
-      propertyPath: m_ClearFlags
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7878409003769767164, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7878409003769767164, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7878409003769767164, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8435203605189470117, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
         type: 3}

@@ -2481,8 +2481,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    vectorObservationSize: 2
-    numStackedVectorObservations: 2
+    vectorObservationSize: 4
+    numStackedVectorObservations: 1
     vectorActionSize: 02000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
@@ -2516,7 +2516,7 @@ MonoBehaviour:
   resWidth: 400
   resHeight: 300
   platform: {fileID: 7878409003142446510}
-  plane: {fileID: 784131144057526005, guid: d2a3b43de9175b246a9151c515889bd1, type: 3}
+  plane: {fileID: 2430970756100831954}
 --- !u!1 &7878409003142446510
 GameObject:
   m_ObjectHideFlags: 0
@@ -2655,7 +2655,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 0.5
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 25
@@ -2707,8 +2707,8 @@ Camera:
   m_GameObject: {fileID: 7878409003769767105}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -2731,7 +2731,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 1
+  m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1

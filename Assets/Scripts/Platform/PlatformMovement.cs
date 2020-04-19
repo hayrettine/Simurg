@@ -44,7 +44,7 @@ public class PlatformMovement : MonoBehaviour
     {
         this.transform.localPosition =  new Vector3((float)((leftCorner.localPosition.x + rightCorner.localPosition.x) / 2) + Random.Range(-10,10) ,leftCorner.localPosition.y + 0.5f, (float)((upCorner.localPosition.z + rightCorner.localPosition.z) / 2) + Random.Range(-10, 10));
         SetTarget();
-        Debug.Log("Platform reset!!");
+        
         
     }
 }
