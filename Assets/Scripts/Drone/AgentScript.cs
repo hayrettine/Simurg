@@ -60,7 +60,7 @@ public class AgentScript : Agent
         if (max == 0)//|| tf.position.y < 0.3)
         {
             Debug.Log("Done");
-            AddReward(-punishmentForCenter().magnitude);
+            AddReward(-5);
             Done();
         }
     }
