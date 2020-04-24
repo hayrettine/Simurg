@@ -139,7 +139,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -198,41 +198,80 @@ PrefabInstance:
       propertyPath: m_TargetDisplay
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7878409002921720262, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 30.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878409002921720264, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878409002921720264, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878409002921720264, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7878409002921720276, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
         type: 3}
       propertyPath: maxStep
-      value: 1000
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 7878409002921720276, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
         type: 3}
       propertyPath: resWidth
-      value: 400
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7878409002921720276, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
         type: 3}
       propertyPath: resHeight
-      value: 300
+      value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 7878409002921720276, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
+        type: 3}
+      propertyPath: myBehave
+      value: 
+      objectReference: {fileID: 1915237710}
     - target: {fileID: 7878409002921720277, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 11400000, guid: 828014b6761ded549aa724c68ce9d39f,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7878409002921720277, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
         type: 3}
       propertyPath: m_BehaviorType
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7878409002921720277, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
         type: 3}
       propertyPath: m_InferenceDevice
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7878409002921720277, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
+        type: 3}
+      propertyPath: m_BrainParameters.vectorObservationSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878409002921720277, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
+        type: 3}
+      propertyPath: m_BrainParameters.numStackedVectorObservations
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878409002921720277, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
+        type: 3}
+      propertyPath: m_BrainParameters.vectorActionSize.Array.data[0]
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7878409003142446511, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
         type: 3}
       propertyPath: m_Speed
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8435203605189470117, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
         type: 3}
@@ -291,3 +330,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc, type: 3}
+--- !u!114 &1915237710 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7878409002921720277, guid: 1ec68cad3e9aa3b47ad8dc3ea92e07cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 991657156}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

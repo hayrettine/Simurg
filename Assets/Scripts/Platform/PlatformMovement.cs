@@ -12,12 +12,13 @@ public class PlatformMovement : MonoBehaviour
     public Transform downCorner;
     Vector3 target;
     public float timer = 0;
-
+    
     // Start is called before the first frame update
     void Start()
     {
         nav = GetComponent<NavMeshAgent>();
         SetTarget();
+        
     }
 
     // Update is called once per frame
@@ -42,7 +43,7 @@ public class PlatformMovement : MonoBehaviour
     }
     public void ResetPlatform()
     {
-        this.transform.localPosition =  new Vector3((float)((leftCorner.localPosition.x + rightCorner.localPosition.x) / 2) + Random.Range(-10,10) ,leftCorner.localPosition.y + 0.5f, (float)((upCorner.localPosition.z + rightCorner.localPosition.z) / 2) + Random.Range(-10, 10));
+        this.transform.localPosition =  new Vector3((float)((leftCorner.localPosition.x + rightCorner.localPosition.x) / 2) + Random.Range(-11,11) ,leftCorner.localPosition.y + 0.5f, (float)((upCorner.localPosition.z + rightCorner.localPosition.z) / 2) + Random.Range(-11, 11));
         SetTarget();
         
         

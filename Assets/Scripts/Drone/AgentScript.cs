@@ -4,6 +4,7 @@ using UnityEngine;
 using MLAgents;
 using System.IO;
 using MLAgents.Sensors;
+using MLAgents.Policies;
 //using MLAgents.Sensor;
 public class AgentScript : Agent
 {
@@ -19,10 +20,15 @@ public class AgentScript : Agent
     float[] last_action;    
     public GameObject platform;
     public Transform plane;
+    
+
+    int currentBlack = 0;
+    int oldBlack = 0;
+    int blackChange = 0;
  
     void Start()
     {
-        last_action = new float[2];
+        last_action = new float[3];
         
     }
     
@@ -32,7 +38,8 @@ public class AgentScript : Agent
         rBody.angularVelocity = Vector3.zero;
         rBody.velocity = Vector3.zero;
         //tf.position = new Vector3(Random.RandomRange(-15, 15), 20f, Random.RandomRange(-15, 15));
-        tf.position = new Vector3(plane.position.x, plane.position.y + 20f, plane.position.z);
+        tf.position = new Vector3(plane.position.x, plane.position.y + 35f, plane.position.z);
+     
 
         //TODO platformun resetleneceği kısım. targetTransform platformun tranformu. [Sinan]
         //TODO platformu (0,0.5,0) noktasında oluşturmamız yeterli şuan. Sonra random'a çekeriz.
@@ -40,6 +47,8 @@ public class AgentScript : Agent
         //targetTransform.position = new Vector3(0, 0.5f, 0);
 
         platform.GetComponent<PlatformMovement>().ResetPlatform();
+
+        currentBlack = 0;
 
        
 
@@ -49,14 +58,19 @@ public class AgentScript : Agent
     public override void CollectObservations(VectorSensor sensor)
     {
       sensor.AddObservation(punishmentForCenter());
-      sensor.AddObservation(new Vector2(rBody.velocity.x / 20, rBody.velocity.z / 20));
+      
+      sensor.AddObservation(currentBlack / (resWidth * resHeight));
+      currentBlack = 0;
+      sensor.AddObservation(new Vector3(rBody.velocity.x / 20, rBody.velocity.y / 10, rBody.velocity.z / 20));
     }
 
     public override void AgentAction(float[] vectorAction)
     {
-        rBody.velocity += new Vector3(vectorAction[0], 0, vectorAction[1]);
+        rBody.velocity += new Vector3(vectorAction[0] * 0.981f, vectorAction[1], vectorAction[2]);
         AddReward(-punishmentForCenter().magnitude);
-
+    
+        AddReward(currentBlack / (resHeight * resWidth));
+        
         if (max == 0)//|| tf.position.y < 0.3)
         {
 
@@ -64,14 +78,29 @@ public class AgentScript : Agent
             //Debug.Log(punishmentForCenter());
 
             //punishmentForCenter();
-            AddReward(-5);
+            AddReward(-100);
             Done();
         }
+        if(currentBlack < 50)
+        {
+            AddReward(-100);
+            Done();
+        }
+        if(currentBlack / (resWidth * resHeight) >= 0.95)
+        {
+            AddReward(100);
+            AddReward(rBody.velocity.y * 5);
+            Debug.Log(rBody.velocity);
+            
+            Done();
+
+        }
+        currentBlack = 0;
     }
 
     public override float[] Heuristic()
     {
-        var action = new float[2];
+        var action = new float[3];
         //action[0] = Input.GetAxis("Horizontal");
         //action[0] = Input.GetAxis("Vertical");
         
@@ -103,8 +132,11 @@ public class AgentScript : Agent
                 {
                     min_index = i;
                 }
+                currentBlack++;
             }
         }
+
+    
         max = max_index;
        // Debug.Log(max);
         Destroy(rt);
@@ -115,6 +147,8 @@ public class AgentScript : Agent
         int rowOfMax = max_index / resWidth;
         int rowOfMin = min_index / resWidth;
 
+      
+        
         float horizontalDistance2Center = ((resWidth / 2) - ((float)(columnOfMax + columnOfMin) / 2)) / (resWidth / 2);
         float verticalDistance2Center = ((resHeight / 2) - ((float)(rowOfMax + rowOfMin) / 2)) / (resHeight / 2);
         return new Vector2(horizontalDistance2Center, verticalDistance2Center);
