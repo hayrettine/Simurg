@@ -23,8 +23,7 @@ public class AgentScript : Agent
     
 
     int currentBlack = 0;
-    int oldBlack = 0;
-    int blackChange = 0;
+
  
     void Start()
     {
@@ -66,9 +65,13 @@ public class AgentScript : Agent
 
     public override void AgentAction(float[] vectorAction)
     {
-        rBody.velocity += new Vector3(vectorAction[0] * 0.981f, vectorAction[1], vectorAction[2]);
+        float actionY = Mathf.Clamp(vectorAction[1], 0f, 1f);
+        rBody.velocity += new Vector3(vectorAction[0], actionY, vectorAction[2]);
+        transform.rotation = Quaternion.identity;
+        transform.Rotate(vectorAction[2] * 20, 0 , vectorAction[0] * 20);
         AddReward(-punishmentForCenter().magnitude);
     
+        
         AddReward(currentBlack / (resHeight * resWidth));
         
         if (max == 0)//|| tf.position.y < 0.3)
@@ -88,8 +91,8 @@ public class AgentScript : Agent
         }
         if(currentBlack / (resWidth * resHeight) >= 0.95)
         {
-            AddReward(100);
-            AddReward(rBody.velocity.y * 5);
+            AddReward(150);
+            AddReward(rBody.velocity.y);
             Debug.Log(rBody.velocity);
             
             Done();
