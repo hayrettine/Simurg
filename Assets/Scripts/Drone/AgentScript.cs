@@ -14,8 +14,8 @@ public class AgentScript : Agent
     public GameObject platform;
     public Transform plane;
     Color32[] cameraImage;
-    int lastBlackPixelCount;
-
+    
+     
     public Camera camera;
     public int resWidth = 800;
     public int resHeight = 600;
@@ -25,9 +25,8 @@ public class AgentScript : Agent
     {
         rBody = GetComponent<Rigidbody>();
         tf = GetComponent<Transform>();
-        lastBlackPixelCount = 0;
 
-
+       
     }
     
 
@@ -44,9 +43,8 @@ public class AgentScript : Agent
     {
       cameraImage = GetImageFromCamera();
       sensor.AddObservation(PixelDistanceForObservation());
-        sensor.AddObservation(GetBlackPixelCount()-lastBlackPixelCount);
       sensor.AddObservation(GetBlackPixelCount() / (resWidth * resHeight));
-      sensor.AddObservation(new Vector3(rBody.velocity.x, rBody.velocity.y, rBody.velocity.z));
+      sensor.AddObservation(new Vector3(rBody.velocity.x / 20, rBody.velocity.y / 20, rBody.velocity.z / 20));
     }
 
     public override void AgentAction(float[] vectorAction)
@@ -58,12 +56,15 @@ public class AgentScript : Agent
         rBody.velocity += new Vector3(vectorAction[0], actionY, vectorAction[2]);
 
         int currentBlackPixelCount = GetBlackPixelCount();
+       
 
         AddReward(PunishmentForCenter());
-        AddReward((currentBlackPixelCount - lastBlackPixelCount));
-        
-        
-        if(currentBlackPixelCount < 50)
+
+        AddReward(-1 + ((float)currentBlackPixelCount / (resHeight * resWidth)));
+ 
+
+
+        if (currentBlackPixelCount < 50)
         {
             AddReward(-100);
             Done();
@@ -72,9 +73,11 @@ public class AgentScript : Agent
         {
             AddReward(150);
             AddReward(rBody.velocity.y);
+            Debug.Log(rBody.velocity);
             Done();
         }
-        lastBlackPixelCount = currentBlackPixelCount;
+       
+
     }
 
     public float PunishmentForCenter()
@@ -93,8 +96,8 @@ public class AgentScript : Agent
     {
 
         int columnOfMax = featuresFromImage[0];
-        int columnOfMin = featuresFromImage[1];
-        int rowOfMax = featuresFromImage[2];
+        int rowOfMax = featuresFromImage[1];
+        int columnOfMin = featuresFromImage[2];        
         int rowOfMin = featuresFromImage[3];
 
         //Normalized distance values 
