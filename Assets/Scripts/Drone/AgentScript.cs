@@ -14,18 +14,19 @@ public class AgentScript : Agent
     public GameObject platform;
     public Transform plane;
     Color32[] cameraImage;
-    
-     
+    public BehaviorParameters bp;
+    public AgentScript agentScprit;
+
     public Camera camera;
     public int resWidth = 800;
     public int resHeight = 600;
+    
 
- 
     void Start()
     {
         rBody = GetComponent<Rigidbody>();
         tf = GetComponent<Transform>();
-
+        
        
     }
     
@@ -34,7 +35,7 @@ public class AgentScript : Agent
     {
         rBody.angularVelocity = Vector3.zero;
         rBody.velocity = Vector3.zero;
-        tf.position = new Vector3(plane.position.x, plane.position.y + 35f, plane.position.z);
+        tf.position = new Vector3(plane.position.x, plane.position.y + 50f, plane.position.z);
         platform.GetComponent<PlatformMovement>().ResetPlatform();
     }
 
@@ -46,7 +47,17 @@ public class AgentScript : Agent
       sensor.AddObservation(GetBlackPixelCount() / (resWidth * resHeight));
       sensor.AddObservation(new Vector3(rBody.velocity.x / 20, rBody.velocity.y / 20, rBody.velocity.z / 20));
     }
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            transform.position += new Vector3(0,0,1.0f);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            transform.position += new Vector3(0, 0, -1.0f);
+        }
+    }
     public override void AgentAction(float[] vectorAction)
     {
         transform.rotation = Quaternion.identity;
@@ -60,13 +71,14 @@ public class AgentScript : Agent
 
         AddReward(PunishmentForCenter());
 
-        AddReward(-1 + ((float)currentBlackPixelCount / (resHeight * resWidth)));
+        AddReward((-1 + ((float)currentBlackPixelCount / (resHeight * resWidth))) * 0.4f);
  
 
 
         if (currentBlackPixelCount < 50)
         {
             AddReward(-100);
+            //Debug.Log(currentBlackPixelCount);
             Done();
         }
         if(currentBlackPixelCount / (resWidth * resHeight) >= 0.95)
@@ -74,6 +86,10 @@ public class AgentScript : Agent
             AddReward(150);
             AddReward(rBody.velocity.y);
             Debug.Log(rBody.velocity);
+            Debug.Log(currentBlackPixelCount);
+           
+            //agentScprit.enabled = false;
+           
             Done();
         }
        
